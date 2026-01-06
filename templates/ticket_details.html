@@ -10,6 +10,7 @@
 <p><strong>Catégorie :</strong> {{ ticket["categorie"] }}</p>
 <p><strong>Priorité :</strong> {{ ticket["priorite"] }}</p>
 <p><strong>Statut :</strong> {{ ticket["statut"] }}</p>
+<p><strong>Date de création :</strong> {{ ticket["date_creation"] }}</p>
 
 <!-- Status : Ouvert/En cours/Fermé/Résolu -->
 {% if ticket["statut"] == "Ouvert" %}

@@ -11,7 +11,8 @@ cursor.execute(
         description TEXT NOT NULL,
         categorie TEXT NOT NULL,
         priorite TEXT NOT NULL,
-        statut TEXT NOT NULL
+        statut TEXT NOT NULL,
+        date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
     """
 )

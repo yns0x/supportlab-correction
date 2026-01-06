@@ -17,7 +17,7 @@ def index():
 def tickets_list():
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT id, titre, categorie, priorite, statut FROM tickets ORDER BY id DESC;")
+    cursor.execute("SELECT id, titre, categorie, priorite, statut, date_creation FROM tickets ORDER BY id DESC;")
     tickets = cursor.fetchall()
     conn.close()
     return render_template("tickets_list.html", tickets=tickets)
@@ -55,7 +55,7 @@ def ticket_detail(ticket_id):
     cursor = conn.cursor()
 
     cursor.execute(
-        "SELECT id, titre, description, categorie, priorite, statut FROM tickets WHERE id = ?",
+        "SELECT id, titre, description, categorie, priorite, statut, date_creation FROM tickets WHERE id = ?",
         (ticket_id,),
     )
     ticket = cursor.fetchone()
