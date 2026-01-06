@@ -38,16 +38,9 @@
     </select>
   </div>
 
+<form method="post">
   <button type="submit" class="btn btn-success">Créer le ticket</button>
   <a href="{{ url_for('tickets_list') }}" class="btn btn-secondary">Annuler</a>
 </form>
-{% endblock %}
-      <option value="Normale" selected>Normale</option>
-      <option value="Haute">Haute</option>
-    </select>
-  </div>
 
-  <button type="submit" class="btn btn-success">Créer le ticket</button>
-  <a href="{{ url_for('tickets_list') }}" class="btn btn-secondary">Annuler</a>
-</form>
 {% endblock %}

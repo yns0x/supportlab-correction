@@ -9,6 +9,7 @@ cursor.execute(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         titre TEXT NOT NULL,
         description TEXT NOT NULL,
+        categorie TEXT NOT NULL,
         priorite TEXT NOT NULL,
         statut TEXT NOT NULL
     );

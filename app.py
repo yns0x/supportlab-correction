@@ -17,7 +17,7 @@ def index():
 def tickets_list():
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT id, titre, priorite, statut FROM tickets ORDER BY id DESC;")
+    cursor.execute("SELECT id, titre, categorie, priorite, statut FROM tickets ORDER BY id DESC;")
     tickets = cursor.fetchall()
     conn.close()
     return render_template("tickets_list.html", tickets=tickets)
@@ -29,16 +29,25 @@ def ticket_new():
         description = request.form.get("description")
         categorie = request.form.get("categorie")
         priorite = request.form.get("priorite")
+
+
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute(
-            "INSERT INTO tickets (titre, description, categorie, priorite, statut) VALUES (?, ?, ?, ?, ?)",
-            (titre, description, categorie, priorite, "Ouvert"),
+            """
+            INSERT INTO tickets (titre, description, priorite, statut, categorie)
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (titre, description, priorite, "Ouvert", categorie),
         )
         conn.commit()
         conn.close()
+
         return redirect(url_for("tickets_list"))
+
+    # Ici : affichage du formulaire en GET
     return render_template("ticket_new.html")
+
 
 @app.route("/tickets/<int:ticket_id>")
 def ticket_detail(ticket_id):
@@ -46,7 +55,7 @@ def ticket_detail(ticket_id):
     cursor = conn.cursor()
 
     cursor.execute(
-        "SELECT id, titre, description, priorite, statut FROM tickets WHERE id = ?",
+        "SELECT id, titre, description, categorie, priorite, statut FROM tickets WHERE id = ?",
         (ticket_id,),
     )
     ticket = cursor.fetchone()
