@@ -17,7 +17,7 @@ def index():
 def tickets_list():
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT id, titre, categorie, priorite, statut, date_creation FROM tickets ORDER BY id DESC;")
+    cursor.execute("SELECT id, titre, categorie, priorite, statut, note, date_creation FROM tickets ORDER BY id DESC;")
     tickets = cursor.fetchall()
     conn.close()
     return render_template("tickets_list.html", tickets=tickets)
@@ -29,16 +29,16 @@ def ticket_new():
         description = request.form.get("description")
         categorie = request.form.get("categorie")
         priorite = request.form.get("priorite")
-
+        note = request.form.get("note")
 
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute(
             """
-            INSERT INTO tickets (titre, description, priorite, statut, categorie)
-            VALUES (?, ?, ?, ?, ?)
+            INSERT INTO tickets (titre, description, priorite, statut, categorie, note)
+            VALUES (?, ?, ?, ?, ?, ?)
             """,
-            (titre, description, priorite, "Ouvert", categorie),
+            (titre, description, priorite, "Ouvert", categorie, note),
         )
         conn.commit()
         conn.close()
@@ -55,7 +55,7 @@ def ticket_detail(ticket_id):
     cursor = conn.cursor()
 
     cursor.execute(
-        "SELECT id, titre, description, categorie, priorite, statut, date_creation FROM tickets WHERE id = ?",
+        "SELECT id, titre, description, categorie, priorite, statut, note, date_creation FROM tickets WHERE id = ?",
         (ticket_id,),
     )
     ticket = cursor.fetchone()
@@ -77,6 +77,23 @@ def update_ticket_status(ticket_id):
     cursor.execute(
         "UPDATE tickets SET statut = ? WHERE id = ?",
         (statut, ticket_id),
+    )
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for("ticket_detail", ticket_id=ticket_id))
+
+# Ajout d'une note au ticket
+@app.route("/tickets/<int:ticket_id>/note", methods=["POST"])
+def add_ticket_note(ticket_id):
+    note = request.form.get("note")
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "UPDATE tickets SET note = ? WHERE id = ?",
+        (note, ticket_id),
     )
     conn.commit()
     conn.close()
