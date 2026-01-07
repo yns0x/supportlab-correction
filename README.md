@@ -22,7 +22,7 @@ Application web de **ticketing** développée avec Flask et Python, conçue pour
 - Bibliothèque Python :
   - `Flask`
  
-## Utilisationn :
+## Utilisation :
 Installation des dépendances :
 
 ```bash
