@@ -21,7 +21,8 @@ Application web de **ticketing** développée avec Flask et Python, conçue pour
 - Python 3.x  
 - Bibliothèque Python :
   - `Flask`
-
+ 
+## Utilisationn :
 Installation des dépendances :
 
 ```bash
@@ -33,7 +34,6 @@ Initialisation de la base de données :
 ```bash
 python init_db.py
 ```
-Cela crée (ou met à jour) le fichier supportlab.db avec la structure nécessaire pour les tickets.
 
 Démarrage de l’application
 Depuis la racine du projet SUPPORTLAB :
@@ -41,12 +41,14 @@ Depuis la racine du projet SUPPORTLAB :
 ```bash
 python app.py
 ```
+Cela crée (ou met à jour) le fichier supportlab.db avec la structure nécessaire pour les tickets.
+
 Par défaut, l’application Flask est accessible à l’adresse :
 ```text
 http://127.0.0.1:5000
 ```
 
-Cas d’usage :
+## Cas d’usage :
 
 - Centraliser les demandes utilisateurs (incidents, demandes de service) dans une interface unique.
 
@@ -54,7 +56,7 @@ Cas d’usage :
 
 - Illustrer des compétences en développement web back-end avec Flask (routes, templates, gestion de formulaires) et en gestion de données avec SQLite.
 
-Améliorations futures :
+## Améliorations futures :
 
 - Ajouter un système d’authentification (comptes agents / utilisateurs) et des rôles.
 
