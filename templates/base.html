@@ -1,9 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>{% block title %}SupportLab{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap 5 -->
     <link
@@ -11,21 +11,38 @@
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
-    >
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{{ url_for('tickets_list') }}">SupportLab</a>
-    <div>
-      <a class="btn btn-outline-light btn-sm" href="{{ url_for('ticket_new') }}">Nouveau ticket</a>
-    </div>
-  </div>
-</nav>
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('tickets_list') }}"
+          >SupportLab</a
+        >
+        <div>
+          <a
+            class="btn btn-outline-light btn-sm"
+            href="{{ url_for('ticket_new') }}"
+            >Nouveau ticket</a
+          >
+        </div>
+        <div>
+          <a
+            class="btn btn-outline-light btn-sm"
+            href="{{ url_for('reports') }}"
+            >Rapports</a
+          >
+        </div>
+        <div>
+          <a
+            class="btn btn-outline-light btn-sm"
+            href="{{ url_for('settings') }}"
+            >Paramètres</a
+          >
+        </div>
+      </div>
+    </nav>
 
-<div class="container">
-    {% block content %}{% endblock %}
-</div>
-
-</body>
+    <div class="container">{% block content %}{% endblock %}</div>
+  </body>
 </html>
